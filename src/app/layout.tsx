@@ -5,8 +5,8 @@ import { ThemeProvider } from "@/lib/ThemeContext";
 import { CustomerProvider } from "@/lib/CustomerContext";
 
 export const metadata: Metadata = {
-  title: "CrushBank RAG Dashboard",
-  description: "RAG System Monitoring & Analytics Dashboard",
+  title: "CrushBank Dashboard",
+  description: "System Monitoring & Analytics Dashboard",
 };
 
 export default function RootLayout({
