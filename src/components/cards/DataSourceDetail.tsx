@@ -82,7 +82,7 @@ export default function DataSourceDetail({ source, onBack }: Props) {
         </div>
 
         {/* Row 3 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
           <ApiHitsCard data={data.apiHits} onRefresh={noop} />
           <ResponseLatencyCard data={data.responseLatency} onRefresh={noop} />
           <ContentQualityDetailCard data={data.contentQuality} onRefresh={noop} />
