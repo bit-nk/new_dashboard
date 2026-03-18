@@ -16,6 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+        />
+      </head>
       <body className="min-h-screen bg-[#f8f9fb] dark:bg-[#0f1117] transition-colors duration-200">
         <ThemeProvider>
           <CustomerProvider>

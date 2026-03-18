@@ -26,9 +26,9 @@ interface CustomerSettings {
 }
 
 const CUSTOMER_DEFAULTS: Record<string, CustomerSettings> = {
-  meridian: { refreshInterval: 15, uptimeWarning: 99.9, latencyWarning: 1.5, errorRateWarning: 3, emailNotifications: true, slackNotifications: true, webhookUrl: "https://hooks.meridian-health.com/alerts" },
+  meridian: { refreshInterval: 15, uptimeWarning: 99.9, latencyWarning: 1.5, errorRateWarning: 3, emailNotifications: true, slackNotifications: true, webhookUrl: "" },
   apex: { refreshInterval: 30, uptimeWarning: 99.5, latencyWarning: 2.0, errorRateWarning: 5, emailNotifications: true, slackNotifications: false, webhookUrl: "" },
-  summit: { refreshInterval: 60, uptimeWarning: 99.0, latencyWarning: 3.0, errorRateWarning: 8, emailNotifications: false, slackNotifications: true, webhookUrl: "https://summit-ops.slack.com/webhook" },
+  summit: { refreshInterval: 60, uptimeWarning: 99.0, latencyWarning: 3.0, errorRateWarning: 8, emailNotifications: false, slackNotifications: true, webhookUrl: "" },
   brightwave: { refreshInterval: 300, uptimeWarning: 98.5, latencyWarning: 2.5, errorRateWarning: 10, emailNotifications: true, slackNotifications: false, webhookUrl: "" },
 };
 
@@ -41,6 +41,20 @@ export default function SettingsPage() {
   const settings = settingsMap[customer.id] || CUSTOMER_DEFAULTS[customer.id] || FALLBACK;
 
   const updateField = useCallback(<K extends keyof CustomerSettings>(key: K, value: CustomerSettings[K]) => {
+    // Validate number fields
+    if (key === "uptimeWarning" && typeof value === "number") {
+      value = Math.min(100, Math.max(0, value)) as CustomerSettings[K];
+    }
+    if (key === "latencyWarning" && typeof value === "number") {
+      value = Math.min(60, Math.max(0, value)) as CustomerSettings[K];
+    }
+    if (key === "errorRateWarning" && typeof value === "number") {
+      value = Math.min(100, Math.max(0, value)) as CustomerSettings[K];
+    }
+    // Validate webhook URL
+    if (key === "webhookUrl" && typeof value === "string" && value !== "") {
+      try { new URL(value); } catch { return; }
+    }
     setSettingsMap((prev) => ({
       ...prev,
       [customer.id]: { ...(prev[customer.id] || CUSTOMER_DEFAULTS[customer.id] || FALLBACK), [key]: value },
@@ -130,15 +144,15 @@ export default function SettingsPage() {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Uptime Warning (%)</label>
-              <input type="number" step="0.1" value={settings.uptimeWarning} onChange={(e) => updateField("uptimeWarning", Number(e.target.value))} className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white dark:bg-gray-700 dark:text-gray-200" />
+              <input type="number" step="0.1" min="0" max="100" value={settings.uptimeWarning} onChange={(e) => updateField("uptimeWarning", Number(e.target.value))} className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white dark:bg-gray-700 dark:text-gray-200" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Latency Warning (seconds)</label>
-              <input type="number" step="0.1" value={settings.latencyWarning} onChange={(e) => updateField("latencyWarning", Number(e.target.value))} className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white dark:bg-gray-700 dark:text-gray-200" />
+              <input type="number" step="0.1" min="0" max="60" value={settings.latencyWarning} onChange={(e) => updateField("latencyWarning", Number(e.target.value))} className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white dark:bg-gray-700 dark:text-gray-200" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Error Rate Warning (%)</label>
-              <input type="number" value={settings.errorRateWarning} onChange={(e) => updateField("errorRateWarning", Number(e.target.value))} className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white dark:bg-gray-700 dark:text-gray-200" />
+              <input type="number" min="0" max="100" value={settings.errorRateWarning} onChange={(e) => updateField("errorRateWarning", Number(e.target.value))} className="w-full px-3 py-2 border border-gray-200 dark:border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 bg-white dark:bg-gray-700 dark:text-gray-200" />
             </div>
           </div>
         </div>

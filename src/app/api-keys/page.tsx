@@ -14,24 +14,32 @@ interface ApiKey {
   scopes: string[];
 }
 
-// Different default keys per customer
+// Generate a secure random demo key (no real secrets in client code)
+function generateDemoKey(prefix: string): string {
+  const array = new Uint8Array(28);
+  crypto.getRandomValues(array);
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+  return prefix + Array.from(array, (b) => chars[b % chars.length]).join("");
+}
+
+// Demo keys per customer — generated at runtime, never hardcoded
 const CUSTOMER_KEYS: Record<string, ApiKey[]> = {
   meridian: [
-    { id: "m1", name: "Meridian EHR Integration", key: "cb_live_mhc_a1b2c3d4e5f6g7h8i9j0k1l2m3n4", createdAt: "2026-01-10", lastUsed: "2026-03-17", scopes: ["query", "index", "search"] },
-    { id: "m2", name: "Patient Records Sync", key: "cb_live_mhc_z9y8x7w6v5u4t3s2r1q0p9o8n7m6", createdAt: "2026-02-05", lastUsed: "2026-03-16", scopes: ["query", "search"] },
-    { id: "m3", name: "Compliance Audit Read-Only", key: "cb_read_mhc_j5k6l7m8n9o0p1q2r3s4t5u6v7w8", createdAt: "2026-03-01", lastUsed: null, scopes: ["query"] },
+    { id: "m1", name: "EHR Integration", key: generateDemoKey("cb_live_mhc_"), createdAt: "2026-01-10", lastUsed: "2026-03-17", scopes: ["query", "index", "search"] },
+    { id: "m2", name: "Patient Records Sync", key: generateDemoKey("cb_live_mhc_"), createdAt: "2026-02-05", lastUsed: "2026-03-16", scopes: ["query", "search"] },
+    { id: "m3", name: "Compliance Audit Read-Only", key: generateDemoKey("cb_read_mhc_"), createdAt: "2026-03-01", lastUsed: null, scopes: ["query"] },
   ],
   apex: [
-    { id: "a1", name: "Trading Platform API", key: "cb_live_afg_q1w2e3r4t5y6u7i8o9p0a1s2d3f4", createdAt: "2026-01-20", lastUsed: "2026-03-17", scopes: ["query", "index", "search", "admin"] },
-    { id: "a2", name: "Risk Analysis Pipeline", key: "cb_read_afg_g5h6j7k8l9z0x1c2v3b4n5m6q7w8", createdAt: "2026-02-15", lastUsed: "2026-03-15", scopes: ["query", "search"] },
+    { id: "a1", name: "Trading Platform API", key: generateDemoKey("cb_live_afg_"), createdAt: "2026-01-20", lastUsed: "2026-03-17", scopes: ["query", "index", "search", "admin"] },
+    { id: "a2", name: "Risk Analysis Pipeline", key: generateDemoKey("cb_read_afg_"), createdAt: "2026-02-15", lastUsed: "2026-03-15", scopes: ["query", "search"] },
   ],
   summit: [
-    { id: "s1", name: "Fleet Tracking Ingest", key: "cb_live_sml_p1o2i3u4y5t6r7e8w9q0a1s2d3f4", createdAt: "2026-02-01", lastUsed: "2026-03-17", scopes: ["query", "index"] },
-    { id: "s2", name: "Dispatch Dashboard", key: "cb_read_sml_g5h6j7k8l9m0n1b2v3c4x5z6q7w8", createdAt: "2026-03-10", lastUsed: "2026-03-16", scopes: ["query"] },
-    { id: "s3", name: "Warehouse Staging", key: "cb_test_sml_r4t5y6u7i8o9p0q1w2e3a4s5d6f7", createdAt: "2026-03-14", lastUsed: null, scopes: ["query", "search"] },
+    { id: "s1", name: "Fleet Tracking Ingest", key: generateDemoKey("cb_live_sml_"), createdAt: "2026-02-01", lastUsed: "2026-03-17", scopes: ["query", "index"] },
+    { id: "s2", name: "Dispatch Dashboard", key: generateDemoKey("cb_read_sml_"), createdAt: "2026-03-10", lastUsed: "2026-03-16", scopes: ["query"] },
+    { id: "s3", name: "Warehouse Staging", key: generateDemoKey("cb_test_sml_"), createdAt: "2026-03-14", lastUsed: null, scopes: ["query", "search"] },
   ],
   brightwave: [
-    { id: "b1", name: "Content CMS Connector", key: "cb_live_bwm_m1n2b3v4c5x6z7l8k9j0h1g2f3d4", createdAt: "2026-01-25", lastUsed: "2026-03-17", scopes: ["query", "index", "search"] },
+    { id: "b1", name: "Content CMS Connector", key: generateDemoKey("cb_live_bwm_"), createdAt: "2026-01-25", lastUsed: "2026-03-17", scopes: ["query", "index", "search"] },
   ],
 };
 
@@ -79,8 +87,7 @@ export default function ApiKeysPage() {
     if (!newKeyName.trim()) return;
     const id = crypto.randomUUID();
     const prefix = newKeyScopes.has("admin") ? `cb_admin_${customer.shortName.toLowerCase()}_` : newKeyScopes.size > 2 ? `cb_live_${customer.shortName.toLowerCase()}_` : `cb_read_${customer.shortName.toLowerCase()}_`;
-    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-    const random = Array.from({ length: 28 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
+    const random = generateDemoKey(prefix).slice(prefix.length);
     const newKey: ApiKey = {
       id,
       name: newKeyName.trim(),
