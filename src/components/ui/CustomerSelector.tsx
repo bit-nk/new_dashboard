@@ -16,7 +16,7 @@ export default function CustomerSelector() {
   return (
     <div className="mb-6">
       <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">Select Customer</h2>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {customers.map((c) => {
           const isActive = c.id === customer.id;
           const colors = colorMap[c.color] || colorMap.blue;
@@ -60,7 +60,7 @@ export function CustomerSwitcherCompact() {
   const colors = colorMap[customer.color] || colorMap.blue;
 
   return (
-    <div className="flex items-center gap-2 mb-5">
+    <div className="flex items-center gap-2 mb-5 flex-wrap">
       <Building2 size={14} className="text-gray-400" />
       <span className="text-xs text-gray-500 dark:text-gray-400">Customer:</span>
       <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-700 rounded-lg p-0.5">
