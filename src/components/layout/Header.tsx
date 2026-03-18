@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, ChevronDown, User, Key, SlidersHorizontal, LogOut, ArrowRight, Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useRef, useEffect, useCallback } from "react";
@@ -140,9 +141,16 @@ export default function Header() {
         </button>
 
         {/* Logo */}
-        <div className="flex-shrink-0">
-          <div className="w-8 h-8 bg-teal-800 dark:bg-teal-600 rounded-lg" />
-        </div>
+        <Link href="/" className="flex-shrink-0">
+          <Image
+            src="/crushbank_dashboard/crushbank-logo.svg"
+            alt="CrushBank"
+            width={168}
+            height={36}
+            className="h-7 sm:h-9 w-auto dark:invert"
+            priority
+          />
+        </Link>
 
         {/* Search */}
         <div className="flex-1 max-w-lg mx-3 sm:mx-8 relative hidden sm:block" ref={searchRef}>
