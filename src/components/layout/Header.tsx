@@ -143,7 +143,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <Image
-            src="/crushbank_dashboard/crushbank-logo.svg"
+            src="/new_dashboard/crushbank-logo.svg"
             alt="Sample"
             width={168}
             height={36}
