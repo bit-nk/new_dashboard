@@ -1,5 +1,5 @@
 // ============================================================
-// CrushBank Dashboard - Type Definitions
+// Sample Dashboard - Type Definitions
 // ============================================================
 
 export interface SystemStatus {
