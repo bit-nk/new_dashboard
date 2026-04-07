@@ -144,7 +144,7 @@ export default function Header() {
         <Link href="/" className="flex-shrink-0">
           <Image
             src="/crushbank_dashboard/crushbank-logo.svg"
-            alt="CrushBank"
+            alt="Sample"
             width={168}
             height={36}
             className="h-7 sm:h-9 w-auto dark:invert"
