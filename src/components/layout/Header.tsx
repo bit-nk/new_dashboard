@@ -145,8 +145,8 @@ export default function Header() {
           <Image
             src="/new_dashboard/lumina-logo.svg"
             alt="Lumina"
-            width={168}
-            height={36}
+            width={180}
+            height={40}
             className="h-7 sm:h-9 w-auto dark:invert"
             priority
           />
