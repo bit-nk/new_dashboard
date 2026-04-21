@@ -41,7 +41,7 @@ const searchIndex: SearchItem[] = [
   { label: "HubSpot CRM Sync", page: "System Status", href: "/system-status", keywords: ["hubspot", "crm", "sync", "service"] },
   { label: "TigerPaw Adapter", page: "System Status", href: "/system-status", keywords: ["tigerpaw", "adapter", "service"] },
   { label: "ConnectWise Sync Engine", page: "System Status", href: "/system-status", keywords: ["connectwise", "sync", "engine", "service"] },
-  { label: "RAG Engine", page: "System Status", href: "/system-status", keywords: ["rag", "engine", "service"] },
+  { label: "Query Engine", page: "System Status", href: "/system-status", keywords: ["query", "engine", "service"] },
   { label: "Vector Database", page: "System Status", href: "/system-status", keywords: ["vector", "database", "db"] },
   { label: "API Gateway", page: "System Status", href: "/system-status", keywords: ["api", "gateway"] },
   { label: "Auth Service", page: "System Status", href: "/system-status", keywords: ["auth", "authentication", "service"] },

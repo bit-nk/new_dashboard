@@ -279,7 +279,7 @@ export function generateCustomerLogs(customerId: string, count = 50): ApiLog[] {
 }
 
 export const mockServiceHealth: ServiceHealth[] = [
-  { name: "RAG Engine", status: "operational", latency: 45, uptime: 99.99, lastChecked: new Date().toISOString() },
+  { name: "Query Engine", status: "operational", latency: 45, uptime: 99.99, lastChecked: new Date().toISOString() },
   { name: "Vector Database", status: "operational", latency: 12, uptime: 99.98, lastChecked: new Date().toISOString() },
   { name: "Document Indexer", status: "operational", latency: 120, uptime: 99.95, lastChecked: new Date().toISOString() },
   { name: "API Gateway", status: "operational", latency: 8, uptime: 99.99, lastChecked: new Date().toISOString() },

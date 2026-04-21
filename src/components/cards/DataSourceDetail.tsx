@@ -73,7 +73,7 @@ export default function DataSourceDetail({ source, onBack }: Props) {
             <DowntimeCard data={data.downtime} onRefresh={noop} />
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">RAG-Specific Metrics</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Service Metrics</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <DocumentRetrievalCard data={data.documentRetrieval} onRefresh={noop} />
               <ContentGenerationCard data={data.contentGeneration} onRefresh={noop} />
