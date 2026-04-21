@@ -42,7 +42,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const setTheme = useCallback(
     (t: Theme) => {
       setThemeState(t);
-      localStorage.setItem("crushbank-theme", t);
+      localStorage.setItem("lumina-theme", t);
       applyTheme(t);
     },
     [applyTheme]
@@ -50,7 +50,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   // Initialize from localStorage
   useEffect(() => {
-    const stored = localStorage.getItem("crushbank-theme") as Theme | null;
+    const stored = localStorage.getItem("lumina-theme") as Theme | null;
     const initial = stored || "light";
     setThemeState(initial);
     applyTheme(initial);

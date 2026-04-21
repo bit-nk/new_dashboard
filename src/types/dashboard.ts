@@ -1,5 +1,5 @@
 // ============================================================
-// Sample Dashboard - Type Definitions
+// Lumina Dashboard - Type Definitions
 // ============================================================
 
 export interface SystemStatus {

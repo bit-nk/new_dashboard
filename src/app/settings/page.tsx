@@ -180,7 +180,7 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Data Sources — full management */}
+        {/* Data Sources - full management */}
         <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Data Sources</h2>

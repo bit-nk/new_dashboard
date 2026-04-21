@@ -66,7 +66,7 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
 
   const setCustomerId = useCallback((id: string) => {
     setCustomerIdState(id);
-    localStorage.setItem("crushbank-customer", id);
+    localStorage.setItem("lumina-customer", id);
   }, []);
 
   const addSource = useCallback((source: DataSourceName) => {
@@ -85,7 +85,7 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
   }, [customerId]);
 
   useEffect(() => {
-    const stored = localStorage.getItem("crushbank-customer");
+    const stored = localStorage.getItem("lumina-customer");
     if (stored && CUSTOMERS.some((c) => c.id === stored)) {
       setCustomerIdState(stored);
     }

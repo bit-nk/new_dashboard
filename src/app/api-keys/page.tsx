@@ -22,7 +22,7 @@ function generateDemoKey(prefix: string): string {
   return prefix + Array.from(array, (b) => chars[b % chars.length]).join("");
 }
 
-// Demo keys per customer — generated at runtime, never hardcoded
+// Demo keys per customer - generated at runtime, never hardcoded
 const CUSTOMER_KEYS: Record<string, ApiKey[]> = {
   meridian: [
     { id: "m1", name: "EHR Integration", key: generateDemoKey("cb_live_mhc_"), createdAt: "2026-01-10", lastUsed: "2026-03-17", scopes: ["query", "index", "search"] },

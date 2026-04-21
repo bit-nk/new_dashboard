@@ -7,7 +7,7 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState({
     firstName: "Admin",
     lastName: "User",
-    email: "admin@crushbank.com",
+    email: "admin@lumina.com",
     role: "Administrator",
     department: "Engineering",
     phone: "",

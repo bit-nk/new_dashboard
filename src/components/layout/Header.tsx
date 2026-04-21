@@ -143,8 +143,8 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <Image
-            src="/new_dashboard/crushbank-logo.svg"
-            alt="Sample"
+            src="/new_dashboard/lumina-logo.svg"
+            alt="Lumina"
             width={168}
             height={36}
             className="h-7 sm:h-9 w-auto dark:invert"
@@ -298,7 +298,7 @@ export default function Header() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">Admin User</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate">admin@crushbank.com</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 truncate">admin@lumina.com</p>
                   </div>
                 </div>
                 <div className="mt-2">

@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/lib/ThemeContext";
 import { CustomerProvider } from "@/lib/CustomerContext";
 
 export const metadata: Metadata = {
-  title: "Sample Dashboard",
+  title: "Lumina Dashboard",
   description: "System Monitoring & Analytics Dashboard",
 };
 
